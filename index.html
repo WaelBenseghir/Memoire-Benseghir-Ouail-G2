@@ -1,76 +1,4 @@
-<?php
-include 'connect.php';
 
-$signInError = "";
-$signUpError = "";
-$showSignUpForm = false;
-
-
-session_start();
-
-if (isset($_POST['signUp'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-
-    $checkEmail = "SELECT * FROM user WHERE email = ?";
-    $stmt = $conn->prepare($checkEmail);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $signUpError = "Email Address Already Exists!";
-        $showSignUpForm = true; 
-    } else {
-        $insertQuery = "INSERT INTO user(name, email, password) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($insertQuery);
-        $stmt->bind_param("sss", $name, $email, $hashed_password);
-        
-        if ($stmt->execute()) {
-  
-            $_SESSION['email'] = $email;
-            $_SESSION['role'] = 'user';
-            header("Location: main.php");
-            exit();
-        } else {
-            $signUpError = "Error: " . $conn->error;
-            $showSignUpForm = true;
-        }
-    }
-}
-
-if (isset($_POST['signIn'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-
-    $sql = "SELECT * FROM user WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['email'] = $row['email'];
-            
-            
-            $_SESSION['role'] = ($row['email'] === 'admin@gmail.com') ? 'admin' : 'user';
-            
-            header("Location: main.php");
-            exit();
-        } else {
-            $signInError = "Incorrect Email or Password";
-        }
-    } else {
-        $signInError = "Incorrect Email or Password";
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,10 +15,10 @@ if (isset($_POST['signIn'])) {
         <main class="main">
 
 
-            <div class="container signInForm" style="<?php echo $showSignUpForm ? 'display: none;' : 'display: block;'; ?>">
+            <div class="container signInForm">
                 <h1>Welcome back!</h1>
                 <p class="title__desc">Enter your details to access your account.</p>
-                <a href="main.php" class="main-page">Click to go to main page</a>
+                <a href="main.html" class="main-page">Click to go to main page</a>
                 <form method="post" action="">
                     <div>
                         <label class="input-label" for="email">Email address</label>
@@ -108,7 +36,6 @@ if (isset($_POST['signIn'])) {
                         <a href="#">Forgot password?</a>
                     </div>
                     <div class="error-message signInError">
-                        <?php if (isset($signInError)) echo $signInError;?>
                     </div>
                     <button type="submit" name="signIn">Sign in</button>
                 </form>
@@ -121,10 +48,10 @@ if (isset($_POST['signIn'])) {
             </div>
 
 
-            <div class="container signUpForm" style="<?php echo $showSignUpForm ? 'display: block;' : 'display: none;'; ?>">
+            <div class="container signUpForm">
                 <h1>Get Started Now</h1>
                 <p class="title__desc">Fill in your details to set up your account.</p>
-                <a href="main.php" class="main-page">click to go to main page</a>
+                <a href="main.html" class="main-page">click to go to main page</a>
                 <form method="post" action="">
                     <div>
                         <label class="input-label" for="name">Name</label>
@@ -145,7 +72,6 @@ if (isset($_POST['signIn'])) {
                         </div>
                     </div>
                     <div class="error-message signUpError">
-                        <?php if (isset($signUpError)) echo $signUpError; ?>
                     </div>
                     <button type="submit" name="signUp">Sign up</button>
                 </form>

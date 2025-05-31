@@ -1,7 +1,3 @@
-<?php 
-    session_start();
-    $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,19 +19,16 @@
         <nav class="header__nav-1">
             <ul class="nav__list-1">
                 <div>
-                    <li class="nav__item home"><a href="main.php" class="btn-home">Home</a></li>
+                    <li class="nav__item home"><a href="main.html" class="btn-home">Home</a></li>
                     <li class="nav__item"><a href="mailto:waelcoding12@gmail.com" class="btn">Contact</a></li>
                     <li class="nav__item"><a href="https://www.reddit.com/r/farming/" target="_blank" class="btn">Community</a></li>
                 </div>
                 <div>
-                    <?php if ($isAdmin): ?>
-                        <li class="nav__item"><button class="btn add-plant">Add Plant</button></li>
-                    <?php endif; ?>
                     <li class="nav__item"><a href="logout.php" class="btn">Logout</a></li>
                 </div>
             </ul>
             <div class="sub-menu">
-                <form id="addPlantForm" action="addPlant.php" method="POST" enctype="multipart/form-data">
+                <form id="addPlantForm" action="addPlant.html" method="POST" enctype="multipart/form-data">
                     <div class="form-div">
                         <!-- Plant Name -->
                         <input type="text" name="name" placeholder="Plant Name" required><br>
@@ -137,12 +130,12 @@
         <nav class="header__nav">
             <ul class="nav__list">
                 <div>
-                    <li class="menu__item"><a href="main.php">Home</a></li>
+                    <li class="menu__item"><a href="main.html">Home</a></li>
                     <li class="menu__item"><a href="mailto:waelcoding12@gmail.com">Contact</a></li>
                     <li class="menu__item"><a href="https://www.reddit.com/r/farming/" target="_blank" >Community</a></li>
                 </div>
                 <div>
-                    <li class="menu__item"><a href="index.php">Logout</a></li>
+                    <li class="menu__item"><a href="index.html">Logout</a></li>
                 </div>
             </ul>
             <svg class="logo menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -161,7 +154,7 @@
                     garden thrive. Dive in, learn more, and watch
                     your greenery flourish beautifully today!</p>
             </div>
-            <a href="main.php">Go to home<svg fill="#000000" width="64px" height="64px" viewBox="0 0 56 56"
+            <a href="main.html">Go to home<svg fill="#000000" width="64px" height="64px" viewBox="0 0 56 56"
                     xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -329,14 +322,14 @@
                     <li><a href="#Trust, Safety & Security">Trust, Safety & Security</a></li>
                 </div>
                 <div>
-                    <li><a href="main.php">Home</a></li>
+                    <li><a href="main.html">Home</a></li>
                     <li><a href="mailto:waelcoding12@gmail.com">Support</a></li>
                     <li><a href="https://www.reddit.com/r/farming/" target="_blank" >Community</a></li>
                 </div>
                 <div>
-                    <li><a href="diagnose.php">Plant Diagnosis</a></li>
-                    <li><a href="plant-base.php">Plants Database</a></li>
-                    <li><a href="weather.php">Weather</a></li>
+                    <li><a href="diagnose.html">Plant Diagnosis</a></li>
+                    <li><a href="plant-base.html">Plants Database</a></li>
+                    <li><a href="weather.html">Weather</a></li>
                 </div>
                 
             </ul>
