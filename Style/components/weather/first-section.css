@@ -1,0 +1,102 @@
+@import "../style.css";
+@import "../utils.css";
+
+
+
+h1{
+    font-size: var(--size-200);
+    font-weight: var(--fw-medium);
+    color: var(--clr-grey-900);
+    text-align: center;
+    position: relative;
+}
+
+h1 .circle{
+    position: absolute;
+    top: 3.5rem;
+    width: 45px;
+    height: 45px;
+}
+
+h3{
+    width: 180px;
+    color: var(--clr-grey-900);
+    font-size: var(--size-28);
+    font-weight: var(--fw-medium);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+}
+
+h3 svg{
+    width: 40px;
+    height: 40px;
+}
+
+.weather div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+
+
+
+.weather-desc{
+    color: var(--clr-grey-900);
+    font-size: var(--size-54);
+    font-weight: var(--fw-medium);
+    text-align: center;
+}
+
+.farmingTips{
+    text-align: center;
+    margin-top: 2rem;
+    font-family: var(--ff-secondary);
+    color: var(--clr-black);
+    font-size: 1.5rem;
+    position: relative;
+    width: fit-content;
+    margin-inline: auto;
+}
+
+.farmingTips::before{
+    content: "\"";
+    position: absolute;
+    left: -10px;
+    top: -2px;
+}
+
+.farmingTips::after{
+    content: "\"";
+    position: absolute;
+    right: -10px;
+    top: -2px;
+}
+
+@media (min-width: 600px){
+    h1{
+        font-size: 250px;
+    }
+
+    .weather{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        padding-left: 4rem;
+    }
+    .weather div{
+        margin-top: 6rem;
+    }
+}
+
+
+
+@media (min-width: 900px){
+    .weather{
+        padding-left: 12rem;
+    }
+}

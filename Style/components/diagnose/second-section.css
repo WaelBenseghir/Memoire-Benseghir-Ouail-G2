@@ -1,0 +1,14 @@
+@import "../style.css";
+@import "../utils.css";
+
+.second-section {
+  margin-top: 4rem;
+  display: grid;
+  place-content: center;
+}
+
+@media (min-width: 900px) {
+  .second-section {
+    place-content: start;
+  }
+}
